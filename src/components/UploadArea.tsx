@@ -92,7 +92,7 @@ export default function UploadArea({
       <p className="mb-8 max-w-xs text-muted">
         {isProcessing
           ? "Compressing and resizing your image while maintaining quality."
-          : "Drag and drop here, or click to browse. We support JPG, PNG, WebP."}
+          : "Drag and drop here, or click to browse. Max 1.5MB. We support JPG, PNG, WebP."}
       </p>
 
       {!isProcessing && (

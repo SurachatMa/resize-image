@@ -25,9 +25,18 @@ export default function Home() {
       fit: "inside",
     });
 
+  // 1.5MB in bytes
+  const MAX_FILE_SIZE = 1.5 * 1024 * 1024;
+
   // New: Handle file selection (just preview, not process yet)
   const handleFileSelect = (file: File) => {
     setError(null);
+
+    if (file.size > MAX_FILE_SIZE) {
+      setError("File size exceeds 1.5MB limit. Please choose a smaller image.");
+      return;
+    }
+
     setOriginalFile(file);
     setResizedBlob(null);
   };
@@ -96,7 +105,7 @@ export default function Home() {
             Image Optimiser
           </h1>
           <p className="text-base md:text-lg text-muted">
-            ลดขนาดไฟล์รูปภาพโดยไม่สูญเสียคุณภาพ
+            ลดขนาดไฟล์รูปภาพโดยไม่สูญเสียคุณภาพ (Max 1.5MB)
           </p>
         </div>
 
