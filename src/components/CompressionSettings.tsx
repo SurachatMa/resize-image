@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sliders, Maximize, Gauge, Scan, Scaling, Crop } from "lucide-react";
+import { Maximize, Gauge, Scan, Scaling, Crop } from "lucide-react";
 
 export interface CompressionSettings {
   quality: number;

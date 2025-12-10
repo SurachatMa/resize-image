@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ArrowRight, ZoomIn, ZoomOut, X } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, ZoomIn, X } from "lucide-react";
 
 interface ImageCompareProps {
   originalFile: File;
@@ -44,10 +45,12 @@ export default function ImageCompare({
           <div className="relative group">
             <div className="aspect-video rounded-xl overflow-hidden bg-surface border border-border">
               {originalUrl && (
-                <img
+                <Image
                   src={originalUrl}
                   alt="Original"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-contain"
+                  unoptimized
                 />
               )}
             </div>
@@ -62,16 +65,18 @@ export default function ImageCompare({
             </span>
           </div>
 
-          <ArrowRight size={24} className="text-muted flex-shrink-0" />
+          <ArrowRight size={24} className="text-muted shrink-0" />
 
           {/* Optimized Image */}
           <div className="relative group">
             <div className="aspect-video rounded-xl overflow-hidden bg-surface border border-success/30">
               {optimizedUrl && (
-                <img
+                <Image
                   src={optimizedUrl}
                   alt="Optimized"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-contain"
+                  unoptimized
                 />
               )}
             </div>
@@ -104,12 +109,16 @@ export default function ImageCompare({
 
           {/* Image container - full screen */}
           <div className="w-full h-full flex items-center justify-center p-4">
-            <img
+            <div className="relative w-full h-full"> 
+            <Image
               src={modalImage === "original" ? originalUrl : optimizedUrl}
               alt={modalImage === "original" ? "Original" : "Optimized"}
-              className="max-w-full max-h-full object-contain"
+              fill
+              className="object-contain"
               onClick={(e) => e.stopPropagation()}
+              unoptimized
             />
+            </div>
           </div>
 
           {/* Toggle buttons at bottom */}

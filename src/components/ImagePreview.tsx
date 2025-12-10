@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import NextImage from "next/image";
 import { X, Loader2, Sparkles, FileImage, Info } from "lucide-react";
 
 interface ImagePreviewProps {
@@ -70,10 +71,12 @@ export default function ImagePreview({
       {/* Image Preview */}
       <div className="flex-1 relative rounded-2xl overflow-hidden bg-surface/50 mb-4 min-h-[250px] flex items-center justify-center">
         {previewUrl && (
-          <img
+          <NextImage
             src={previewUrl}
             alt="Preview"
-            className="max-w-full max-h-[300px] object-contain"
+            fill
+            className="object-contain"
+            unoptimized
           />
         )}
       </div>
@@ -123,7 +126,7 @@ export default function ImagePreview({
 
       {/* Info */}
       <div className="flex items-start gap-2 text-xs text-muted mb-4 p-3 bg-primary/5 rounded-lg">
-        <Info size={14} className="flex-shrink-0 mt-0.5 text-primary" />
+        <Info size={14} className="shrink-0 mt-0.5 text-primary" />
         <span>
           ตรวจสอบการตั้งค่าด้านขวา แล้วกดปุ่ม &quot;เริ่มบีบอัด&quot;
           เพื่อดำเนินการ
