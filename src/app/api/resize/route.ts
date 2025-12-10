@@ -15,6 +15,7 @@ export async function POST(req: NextRequest) {
     const maxHeight = formData.get("maxHeight")
       ? parseInt(formData.get("maxHeight") as string)
       : null;
+    const fit = (formData.get("fit") as keyof sharp.FitEnum) || "inside";
 
     if (!file) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
@@ -25,7 +26,7 @@ export async function POST(req: NextRequest) {
     // Configure resize options
     const resizeOptions: sharp.ResizeOptions = {
       withoutEnlargement: true,
-      fit: "inside",
+      fit: fit,
     };
 
     // Set max dimensions if provided
@@ -36,9 +37,16 @@ export async function POST(req: NextRequest) {
       resizeOptions.height = maxHeight;
     }
 
+    // Special handling for "cover" and "fill" (Exact dimensions)
+    // If user wants exact dimensions but only provided one, we can't truly "distort" or "crop" properly 
+    // without a target aspect ratio. 
+    // However, sharp will handle single dimension by maintaining aspect ratio if the other is missing.
+    // If BOTH are missing, default to 1920.
+
     // If no size limits, use default max of 1920
     if (!maxWidth && !maxHeight) {
       resizeOptions.width = 1920;
+      resizeOptions.fit = 'inside'; // Safety fallback
     }
 
     // Start with sharp and resize

@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🖼️ Image Optimizer
 
-## Getting Started
+A modern, fast, and privacy-focused image compression and resizing web application built with Next.js 15 and Sharp.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **High-Performance Processing**: Powered by [Sharp](https://sharp.pixelplumbing.com/), one of the fastest image processing modules for Node.js.
+- **Modern Formats**: Support for **WebP**, **AVIF**, **PNG**, and **JPEG** output.
+- **Smart Compression**: Adjust quality to balance file size and clarity.
+- **Flexible Resizing**:
+  - **Presets**: Access common standard sizes (4K, Full HD, HD, etc.) instantly.
+  - **Custom Dimensions**: Define exact width and height.
+  - **Resize Modes**:
+    - **Fit (พอดี)**: Maintains aspect ratio within bounds.
+    - **Cover (ตัดส่วน)**: Crops image to fill the exact dimensions (center-weighted).
+    - **Fill (ยืด)**: Stretches image to fill dimensions.
+- **Clean UI**: Beautiful, responsive interface with Dark Mode support.
+- **Privacy First**: Files are processed in-memory and not stored on the server.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Image Processing**: [Sharp](https://sharp.pixelplumbing.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js 18.17 or later
+- npm, yarn, or pnpm
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  Clone the repository:
 
-## Deploy on Vercel
+2.  Install dependencies:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3.  Run the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+4.  Open [http://localhost:3000](http://localhost:3000) with your browser.
+
+## 📖 Documentation
+
+For detailed usage instructions, specifically regarding **Resize Modes** and **Formats**, please refer to the [User Guide](docs/USER_GUIDE.md).
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).

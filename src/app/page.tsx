@@ -22,6 +22,7 @@ export default function Home() {
       quality: 80,
       maxWidth: null,
       maxHeight: null,
+      fit: "inside",
     });
 
   // New: Handle file selection (just preview, not process yet)
@@ -49,6 +50,7 @@ export default function Home() {
       if (compressionSettings.maxHeight) {
         formData.append("maxHeight", compressionSettings.maxHeight.toString());
       }
+      formData.append("fit", compressionSettings.fit);
 
       const response = await fetch("/api/resize", {
         method: "POST",

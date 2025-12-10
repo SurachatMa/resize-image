@@ -1,12 +1,13 @@
 "use client";
 
 import React from "react";
-import { Sliders, Maximize, Gauge } from "lucide-react";
+import { Sliders, Maximize, Gauge, Scan, Scaling, Crop } from "lucide-react";
 
 export interface CompressionSettings {
   quality: number;
   maxWidth: number | null;
   maxHeight: number | null;
+  fit: "inside" | "cover" | "fill";
 }
 
 interface CompressionSettingsProps {
@@ -167,9 +168,72 @@ export default function CompressionSettingsPanel({
           </div>
         </div>
 
+
         <p className="text-xs text-muted mt-3 p-2 bg-surface/50 rounded-lg">
           📐 รูปจะถูกย่อให้พอดีกับขนาดที่กำหนด โดยรักษาสัดส่วนเดิม
         </p>
+
+        {/* Resize Mode - Only show when custom size is set */}
+        {(settings.maxWidth || settings.maxHeight) && (
+          <div className="space-y-3 pt-3 border-t border-border mt-3">
+            <label className="text-sm font-medium text-foreground flex items-center gap-2">
+              <Scan size={16} />
+              โหมดการย่อ
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              <button
+                onClick={() => onSettingsChange({ ...settings, fit: "inside" })}
+                className={`
+                  p-2 rounded-lg text-xs font-medium transition-all duration-200 flex flex-col items-center gap-1 border
+                  ${
+                    settings.fit === "inside"
+                      ? "bg-primary text-white border-primary"
+                      : "bg-surface/50 text-muted hover:bg-surface hover:text-foreground border-border"
+                  }
+                `}
+              >
+                <Scaling size={14} />
+                <span>พอดี</span>
+              </button>
+              <button
+                onClick={() => onSettingsChange({ ...settings, fit: "cover" })}
+                className={`
+                  p-2 rounded-lg text-xs font-medium transition-all duration-200 flex flex-col items-center gap-1 border
+                  ${
+                    settings.fit === "cover"
+                      ? "bg-primary text-white border-primary"
+                      : "bg-surface/50 text-muted hover:bg-surface hover:text-foreground border-border"
+                  }
+                `}
+              >
+                <Crop size={14} />
+                <span>ตัดส่วน</span>
+              </button>
+              <button
+                onClick={() => onSettingsChange({ ...settings, fit: "fill" })}
+                className={`
+                  p-2 rounded-lg text-xs font-medium transition-all duration-200 flex flex-col items-center gap-1 border
+                  ${
+                    settings.fit === "fill"
+                      ? "bg-primary text-white border-primary"
+                      : "bg-surface/50 text-muted hover:bg-surface hover:text-foreground border-border"
+                  }
+                `}
+              >
+                <Maximize size={14} />
+                <span>ยืด</span>
+              </button>
+            </div>
+            <p className="text-xs text-muted">
+              {settings.fit === "inside" &&
+                "รักษาอัตราส่วนเดิม ขนาดอาจไม่เท่ากับที่กำหนดเป๊ะๆ"}
+              {settings.fit === "cover" &&
+                "ตัดส่วนเกินออกเพื่อให้ได้ขนาดเท่าที่กำหนด (ภาพไม่เบี้ยว)"}
+              {settings.fit === "fill" &&
+                "ยืดรูปภาพให้เต็มขนาดที่กำหนด (ภาพอาจเบี้ยว)"}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
