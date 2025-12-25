@@ -1,5 +1,5 @@
 import React from "react";
-import { Heart } from "lucide-react";
+import { Heart, Github, Mail } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,11 +12,27 @@ export default function Footer() {
           © {currentYear} Image Optimiser. All rights reserved.
         </div>
 
-        {/* Made with Love */}
-        <div className="flex items-center gap-2 text-sm text-muted">
+        {/* Made with Love and Contacts */}
+        <div className="flex items-center gap-4 text-sm text-muted">
           <span>Made with</span>
           <Heart size={14} className="text-red-500 fill-red-500 animate-pulse" />
           <span>by Surachat</span>
+          <a
+            href="https://github.com/SurachatMa"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted hover:text-primary transition-colors hover:scale-110 active:scale-95 ml-2"
+            aria-label="GitHub"
+          >
+            <Github size={20} />
+          </a>
+          <a
+            href="mailto:surachat.maliwan@gmail.com"
+            className="text-muted hover:text-primary transition-colors hover:scale-110 active:scale-95 ml-2"
+            aria-label="Contact"
+          >
+            <Mail size={20} />
+          </a>
         </div>
       </div>
     </footer>

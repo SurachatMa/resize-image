@@ -19,9 +19,11 @@ export default function RootLayout({
       <body className="flex flex-col min-h-screen">
         <ThemeProvider>
           <div className="grow">{children}</div>
-          <SideContact />
-          <Footer />
         </ThemeProvider>
+        <div>
+          {/* <SideContact /> */}
+          <Footer />
+        </div>
       </body>
     </html>
   );
